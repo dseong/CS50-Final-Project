@@ -5,4 +5,7 @@
     <h3><?= htmlspecialchars($message) ?></h3>
 </p>
 
-<a class="btn btn-primary" href="javascript:history.go(-1);"><span class="glyphicon glyphicon-arrow-left"></span></a>
+<a class="btn btn-primary" href="javascript:history.go(-1);">
+    <span class="glyphicon glyphicon-arrow-left"></span>
+    Back
+</a>
