@@ -61,8 +61,9 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="/">MusicMates</a>
-                        <a class="navbar-brand" href="/"><img class="logo" src="/img/treble.png" alt="Logo" width="35" height="52" border="0"></a>
+                        <a class="navbar-brand" href="/">
+                            MusicMates
+                        </a>
                     </div>
                     <div id="navbar" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav navbar-right">
