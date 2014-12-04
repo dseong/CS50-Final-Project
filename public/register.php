@@ -17,6 +17,12 @@
         if (empty($_POST["username"]))
         apologize("Please provide username"); 
         
+        if (empty($_POST["name"]))
+        apologize("Please provide username"); 
+        
+        if (empty($_POST["email"]))
+        apologize("Please provide username"); 
+        
         else if (empty($_POST["password"]))
         apologize("Please provide a password");
         
@@ -26,7 +32,7 @@
         else if ($_POST["password"] != $_POST["confirmation"])
         apologize("Your passwords do not match");
         
-        if (query("INSERT INTO users (username, hash, cash) VALUES(?, ?, 10000.00)", $_POST["username"], crypt($_POST["password"])) === false)
+        if (query("INSERT INTO users (username, hash, name, email) VALUES(?, ?, ?, ?)", $_POST["username"], crypt($_POST["password"], $_POST["name"], $_POST["email"])) === false)
         apologize("This username is already being used");
         
         else
