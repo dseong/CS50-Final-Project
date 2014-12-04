@@ -20,15 +20,17 @@
 
 <?php if(!empty($memberships)): ?>
     <div class="datacont">
+        <h3 class="datahead">Your Group Memberships</h3>
         <table class="table">
             <thead>
-                <td>Group Name</td>
-                <td>Group Instrument</td>
+                <tr>
+                    <td>Group Name</td>
+                    <td>Group Instrument</td>
+                </tr>
             </thead>
-            <h3 class="datahead">Your Group Memberships</h3>
             <?php foreach($memberships as $memb): ?>
                 <tr>
-                    <td><a href="<?= "/group.php?id=".$memb["gid"] ?>"><?= htmlspecialchars($memb["name"]) ?></td>
+                    <td><a href="<?= "/group.php?id=".$memb["gid"] ?>"><?= htmlspecialchars($memb["name"]) ?></a></td>
                     <td><?= htmlspecialchars($memb["instrument"]) ?></td>
                 </tr>
             <?php endforeach; ?>
@@ -38,15 +40,17 @@
 
 <?php if(!empty($owned)): ?>
     <div class="datacont">
+        <h3 class="datahead">Groups You Own</h3>
         <table class="table">
             <thead>
-                <td>Group Name</td>
-                <td>Members</td>
+                <tr>
+                    <td>Group Name</td>
+                    <td>Members</td>
+                </tr>
             </thead>
-            <h3 class="datahead">Groups You Own</h3>
             <?php foreach($owned as $own): ?>
                 <tr>
-                    <td><a href="<?= "/group.php?id=".$own["id"] ?>"><?= htmlspecialchars($own["name"]) ?></td>
+                    <td><a href="<?= "/group.php?id=".$own["id"] ?>"><?= htmlspecialchars($own["name"]) ?></a></td>
                     <td><?= htmlspecialchars($own["fullslot"]."/".$own["slotcnt"]) ?></td>
                 </tr>
             <?php endforeach; ?>
