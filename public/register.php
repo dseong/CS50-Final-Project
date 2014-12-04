@@ -33,7 +33,7 @@
         apologize("Your passwords do not match");
         
         if (query("INSERT INTO users (username, hash, name, email) VALUES(?, ?, ?, ?)", $_POST["username"], crypt($_POST["password"]), $_POST["name"], $_POST["email"]) === false)
-        apologize("This username is already being used");
+            apologize("This username is already being used");
         
         else
         {
