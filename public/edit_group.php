@@ -38,7 +38,7 @@
             apologize("You didn't enter a group name");
         }
         // attempt to update info
-        if (query("UPDATE groups SET name = ?, genre = ?, description = ?, skill = ? WHERE id = ?", $_POST["name"], $_POST["genre"], $_POST["description"], $_POST["skill"], $_POST["id"]) === false)
+        if (query("UPDATE groups SET name = ?, genre = ?, description = ?, skill = ? WHERE id = ? AND ownerid = ?", $_POST["name"], $_POST["genre"], $_POST["description"], $_POST["skill"], $_POST["id"], $_SESSION["id"]) === false)
             apologize("Unable to modify group information");
         
         // render succes form
