@@ -15,7 +15,7 @@
             </select>
         </div>
         <div class="form-group">
-            <textarea class="form-control" name="description" cols = "40" rows = "4">Group Description</textarea>
+            <textarea class="form-control" name="description" cols = "40" rows = "4" placeholder="Group Description"></textarea>
         </div>
         Your instrument
         <div class="form-group">
