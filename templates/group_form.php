@@ -3,23 +3,23 @@
     <table class= "table"> 
         <thead>
             <tr>
-            <?php if($userismember): ?><td>Owner Name</td><?php endif; ?>
-            <td>Owner Username</td>
-            <?php if($userismember): ?><td>Email</td><?php endif; ?>
-            <td>Group Name</td>
-            <td>Description</td>
-            <td>Genre</td>
-            <td>Skill</td>
+                <td>Group Name</td>
+                <td>Description</td>
+                <td>Genre</td>
+                <td>Skill</td>
+                <td>Owner Username</td>
+                <?php if($userismember): ?><td>Owner Name</td><?php endif; ?>
+                <?php if($userismember): ?><td>Email</td><?php endif; ?>
             </tr>
         </thead>
         <tr>
-            <?php if($userismember): ?><td><?= $groupinfo["uname"] ?></td><?php endif; ?>
-            <td><?= $groupinfo["username"] ?></td>
-            <?php if($userismember): ?><td><a href = "<?= "mailto:" .$groupinfo["email"] ?>"><?= htmlspecialchars($groupinfo["email"]) ?></a><?php endif; ?>
             <td><?= $groupinfo["gname"] ?></td>
             <td><?= $groupinfo["description"] ?></td>
             <td><?= $groupinfo["genre"] ?></td>
             <td><?= $groupinfo["skill"] ?></td>
+            <td><?= $groupinfo["username"] ?></td>
+            <?php if($userismember): ?><td><?= $groupinfo["uname"] ?></td><?php endif; ?>
+            <?php if($userismember): ?><td><a href = "<?= "mailto:" .$groupinfo["email"] ?>"><?= htmlspecialchars($groupinfo["email"]) ?></a><?php endif; ?>
        </tr>
    </table>
    <hr/>
