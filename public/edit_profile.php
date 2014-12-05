@@ -14,7 +14,7 @@
             $name = query("SELECT name FROM users WHERE id = ?", $_SESSION["id"])[0]["name"];
             $email = query("SELECT email FROM users WHERE id = ?", $_SESSION["id"])[0]["email"];
             
-            render("edit_form.php", ["username" => $username, "name" => $name, "email" => $email]);
+            render("edit_form.php", ["username" => $username, "name" => $name, "email" => $email, "title" => "Edit Profile"]);
         }
         
         // else render login form
