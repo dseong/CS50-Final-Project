@@ -25,8 +25,16 @@
     // if user reached page via POST
     else if ($_SERVER["REQUEST_METHOD"] == "POST")
     {
+        // make sure user didn't completely delete any info
+        if (empty($_POST["username"]))
+            apologize("Please provide username");
+        else if (empty($_POST["email"]))
+            apologize("Please provide email");
+        else if (empty($_POST["username"]))
+            apologize("Please provide name");
+            
         // attempt to update info
-        if (query("UPDATE users SET username = ?, name = ?, email = ? WHERE id = ?", $_POST["username"], $_POST["name"], $_POST["email"], $_SESSION["id"]) === false)
+        else if (query("UPDATE users SET username = ?, name = ?, email = ? WHERE id = ?", $_POST["username"], $_POST["name"], $_POST["email"], $_SESSION["id"]) === false)
             apologize("This username is already being used");
         
         // render succes form
