@@ -6,30 +6,21 @@
     // if user reached via GET, passing in necessary variables
     if ($_SERVER["REQUEST_METHOD"] == "GET")
     {
-        // make sure user is logged in
-        if (!empty($_SESSION["id"]))
+        // retrieve necessary variables to fill form text boxes
+        $name = query("SELECT name FROM groups WHERE id = ?", $_GET["id"])[0]["name"];
+        $description = query("SELECT description FROM groups WHERE id = ?", $_GET["id"])[0]["description"];
+        
+        $genres = [];
+        
+        $data = query("SELECT * FROM genres");
+        
+        foreach($data as $datum)
         {
-            // retrieve necessary variables to fill form text boxes
-            $name = query("SELECT name FROM groups WHERE id = ?", $_GET["id"])[0]["name"];
-            $description = query("SELECT description FROM groups WHERE id = ?", $_GET["id"])[0]["description"];
-            
-            $genres = [];
-            
-            $data = query("SELECT * FROM genres");
-            
-            foreach($data as $datum)
-            {
-                $genres[] = $datum["name"];
-            }
-            
-            render("edit_group_form.php", ["name" => $name, "description" => $description, "genres" => $genres, "id" => $_GET["id"]]);
+            $genres[] = $datum["name"];
         }
         
-        // else render login form
-        else
-            render("login_form.php", ["title" => "Log In"]);
+        render("edit_group_form.php", ["title" => "Edit Group", "name" => $name, "description" => $description, "genres" => $genres, "id" => $_GET["id"]]);
     }
-    
     // if user reached page via POST
     else if ($_SERVER["REQUEST_METHOD"] == "POST")
     {
