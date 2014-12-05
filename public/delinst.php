@@ -11,5 +11,5 @@
         $user = query("DELETE FROM instruments WHERE userid=? AND id=?", $userid, $_GET["id"]);
     }
     
-    redirect("profile.php");
+    apologize("An error occurred while deleting the user.");
 ?>
