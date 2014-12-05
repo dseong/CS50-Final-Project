@@ -3,14 +3,24 @@
     // configuration
     require("../includes/config.php");
 
-    // else if user reached page via POST (as by submitting a form via POST)
-    $instruments = ["Violin", "Viola", "Cello", "Piano", "Base"];
+    // fetching instrument types from central list on php myadmin
+    $instruments = [];
+            
+            $data = query("SELECT * FROM insttypes");
+            
+            foreach($data as $datum)
+            {
+                $instruments[] = $datum["instrument"];
+            }
+    
+    // adding instrument        
     if ($_SERVER["REQUEST_METHOD"] == "POST")
     { 
-    
+        // checks for instrument already in "inventory"
         if (in_array($_POST["instrument"], $instruments) === TRUE)
         {
             $previnst = query("SELECT instrument FROM instruments WHERE id = ?", $_SESSION["id"]);
+            // if valid choice, inserts instrument into user profile
             if ($previnst !== $_POST["instrument"])
             {
                 query("INSERT INTO instruments (userid, instrument) VALUES (?,?)", $_SESSION["id"], $_POST["instrument"]);
@@ -30,7 +40,7 @@
         
         
     }
-    // if user reached page via GET (as by clicking a link or via redirect)
+
     else
     {
        render("addinstrument_form.php", ["instruments" => $instruments, "title" => "Add Instrument"]);
