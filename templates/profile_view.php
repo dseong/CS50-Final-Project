@@ -15,7 +15,7 @@
         <?php endforeach; ?>
     <?php endif; ?>
     
-<a class="btn btn-primary" href="addinstrument.php">Add Instrument</a>
+<a class="btn btn-primary" href="addinstrument.php">Add an Instrument You Play</a>
 <br><br>
 
 <?php if(!empty($memberships)): ?>
