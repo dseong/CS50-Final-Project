@@ -9,9 +9,9 @@
         <link href="/css/styles.css" rel="stylesheet"/>
 
         <?php if (isset($title)): ?>
-            <title>C$50 Finance: <?= htmlspecialchars($title) ?></title>
+            <title><?= htmlspecialchars($title) ?> - MusicMates</title>
         <?php else: ?>
-            <title>C$50 Finance</title>
+            <title>MusicMates</title>
         <?php endif ?>
 
         <script src="/js/jquery-1.11.1.min.js"></script>

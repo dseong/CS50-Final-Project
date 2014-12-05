@@ -2,7 +2,7 @@
     <p class="datahead">Your Profile</p>
     <p><span class="datakey">Name: </span> <?= htmlspecialchars($name); ?></p>
     <p><span class="datakey">Email: </span> <?= htmlspecialchars($email); ?></p>
-    <a href="/editprofile.php">Edit Profile</a>
+    <a href="/edit_profile.php">Edit Profile</a>
 </div>
 <div class="datacont">
     <p class="datahead">Your Instruments</p>
