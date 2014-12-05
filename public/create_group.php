@@ -3,13 +3,30 @@
     // configuration
     require("../includes/config.php");
     
+    $instruments = [];
+            
+    $data = query("SELECT * FROM insttypes");
+            
+    foreach($data as $datum)
+    {
+         $instruments[] = $datum["instrument"];
+    }
+    
     // if user reached via GET, passing in necessary variables
     if ($_SERVER["REQUEST_METHOD"] == "GET")
     {
         // make sure user is logged in
         if (!empty($_SESSION["id"]))
         {
-            render("group_form.php");
+            $genres = [];
+            
+            $data = query("SELECT * FROM genres");
+            
+            foreach($data as $datum)
+            {
+                $genres[] = $datum["name"];
+            }
+            render("group_create_form.php", ["genres" => $genres, "instruments" => $instruments]);
         }
         
         // else render login form
@@ -37,7 +54,6 @@
         {
             apologize("Invalid number of instruments");
         }
-        
         // attempt to create group
         if(query("INSERT INTO groups (ownerid, name, genre, description, skill) VALUES(?, ?, ?, ?, ?)", $_SESSION["id"], $_POST["name"], $_POST["genre"], $_POST["description"], $_POST["skill"]) === false)
             apologize("Group could not be created");
@@ -47,7 +63,19 @@
             // get group's id
             $rows = query("SELECT LAST_INSERT_ID() AS id");
             $id = $rows[0]["id"];
-            $instruments = ["Violin", "Viola", "Cello", "Piano", "Base"];
+            
+            // enter owner's instrument into database
+            query("INSERT INTO groupinsts (groupid, instrument) VALUES(?, ?)", $id, $_POST["instrument"]);
+            
+            $instruments = [];
+            
+            $data = query("SELECT * FROM insttypes");
+            
+            foreach($data as $datum)
+            {
+                $instruments[] = $datum["instrument"];
+            }
+
             render("group_inst_form.php", ["number" => $_POST["number"], "id" => $id, "instruments" => $instruments, "title" => "Select Instruments"]);
         }
     } 

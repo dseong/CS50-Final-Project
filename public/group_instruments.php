@@ -19,6 +19,6 @@
         }
         
         // render succes form
-        render("edited.php");
+        redirect("profile.php");
     } 
 

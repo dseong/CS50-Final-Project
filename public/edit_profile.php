@@ -31,7 +31,7 @@
         
         // render succes form
         else
-            render("edited.php");
+            redirect("profile.php");
     } 
 
 ?>
