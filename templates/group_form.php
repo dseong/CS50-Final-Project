@@ -1,27 +1,48 @@
-<form action="create_group.php" method="post">
-    <fieldset>
-        <div class="form-group">
-            <input autofocus class="form-control" name="name" placeholder = "Group name"  type="text"/>
-        </div>
-        <div class="form-group">
-            <input class="form-control" name="genre" placeholder= "Musical genre" type="text"/>
-        </div>
-        <div class="form-group">
-            <textarea class="form-control" name="description" cols = "40" rows = "4">Group Description</textarea>
-        </div>
-        <div class="form-group">
-            <input class="form-control" name="number" placeholder= "Number of instruments" type="text"/>
-        </div>
-        Skill level
-        <div class="form-group">
-            <select class="form-control" name="skill">
-                <option value="1">Casual</option>
-                <option value="2">Intermediate</option>
-                <option value="3">Advanced</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <button type="submit" class="btn btn-default">Create Group</button>
-        </div>
-    </fieldset>
-</form>
+<div>
+    <table class= "table"> 
+        <thead>
+            <tr>
+            <td>Owner Name</td>
+            <td>Owner Username</td>
+            <td>Email</td>
+            <td>Group Name</td>
+            <td>Description</td>
+            <td>Genre</td>
+            <td>Skill</td>
+            </tr>
+        </thead>
+        <tr>
+            <?php if($userismember): ?><td><?= $groupinfo["name"] ?></td><?php endif; ?>
+            <td><?= $groupinfo["username"] ?></td>
+            <?php if($userismember): ?><td><?= $groupinfo["email"] ?></td><?php endif; ?>
+            <td><?= $groupinfo["name"] ?></td>
+            <td><?= $groupinfo["description"] ?></td>
+            <td><?= $groupinfo["genre"] ?></td>
+            <td><?= $groupinfo["skill"] ?></td>
+       </tr>
+   </table>
+    
+   
+    <table class= "table"> 
+    <thead>
+        <tr>
+        <td>Member Name</td>
+        <td>Member Username</td>
+        <td>Email</td>
+        <td>Instrument</td>
+        </tr>
+    </thead>
+    <?php foreach ($slots as $slot): ?>
+        <tr>
+            <?php if($userismember): ?><td><?= $slot["name"] ?></td><?php endif; ?>
+            <?php if(is_null($slot["username"])): ?><td><span class="italic"><?= htmlspecialchars("OPEN") ?></span></td><?php endif; ?>
+            <?php if(is_null($slot["username"]===false)): ?><td><?= $slot["username"] ?></td><?php endif; ?>
+            <td><?= $slot["username"] ?></td>
+            <?php if($userismember): ?><td><?= $slot["email"] ?></td><?php endif; ?>
+            <td><?= $slot["instrument"] ?></td>
+            
+       </tr>
+    <?php endforeach ?>
+        </table>
+    
+</div>
