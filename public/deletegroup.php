@@ -13,6 +13,7 @@
     {
         apologize("An error occurred while deleting your group.");
     }
+    // check that user has selected valid group for deletion
     if($query_res === 0)
     {
         apologize("No group was eligible for deletion. Please try again.");

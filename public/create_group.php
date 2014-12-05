@@ -3,6 +3,7 @@
     // configuration
     require("../includes/config.php");
     
+    // array for dropdown menu populated with list of valid instruments from sql table
     $instruments = [];
             
     $data = query("SELECT * FROM insttypes");
