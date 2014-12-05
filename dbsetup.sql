@@ -16,6 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `genres`
+--
+
+DROP TABLE IF EXISTS `genres`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `genres` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Unique genre id',
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Genre name',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `genres`
+--
+
+LOCK TABLES `genres` WRITE;
+/*!40000 ALTER TABLE `genres` DISABLE KEYS */;
+INSERT INTO `genres` VALUES (1,'Classical'),(2,'Modern');
+/*!40000 ALTER TABLE `genres` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `groupinsts`
 --
 
@@ -30,9 +55,11 @@ CREATE TABLE `groupinsts` (
   PRIMARY KEY (`id`),
   KEY `userid` (`userid`),
   KEY `groupid` (`groupid`),
-  CONSTRAINT `groupinsts_ibfk_1` FOREIGN KEY (`groupid`) REFERENCES `groups` (`id`),
-  CONSTRAINT `groupinsts_userid` FOREIGN KEY (`userid`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  KEY `instrument` (`instrument`),
+  CONSTRAINT `groupinsts_userid` FOREIGN KEY (`userid`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `groupinsts_ibfk_1` FOREIGN KEY (`groupid`) REFERENCES `groups` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `groupinsts_insttype` FOREIGN KEY (`instrument`) REFERENCES `insttypes` (`instrument`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -60,8 +87,10 @@ CREATE TABLE `groups` (
   `skill` tinyint(3) unsigned NOT NULL COMMENT 'Group skill level',
   PRIMARY KEY (`id`),
   KEY `ownerid` (`ownerid`),
-  CONSTRAINT `groups_ownerid` FOREIGN KEY (`ownerid`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  KEY `genre` (`genre`),
+  CONSTRAINT `groups_genre` FOREIGN KEY (`genre`) REFERENCES `genres` (`name`) ON UPDATE CASCADE,
+  CONSTRAINT `groups_ownerid` FOREIGN KEY (`ownerid`) REFERENCES `users` (`id`) ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -86,9 +115,12 @@ CREATE TABLE `instruments` (
   `instrument` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Instrument name',
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
+  UNIQUE KEY `instrumentperuser` (`userid`,`instrument`),
   KEY `userid` (`userid`),
-  CONSTRAINT `instrument_userid` FOREIGN KEY (`userid`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  KEY `instrument` (`instrument`),
+  CONSTRAINT `instrument_type` FOREIGN KEY (`instrument`) REFERENCES `insttypes` (`instrument`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `instrument_userid` FOREIGN KEY (`userid`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -98,6 +130,31 @@ CREATE TABLE `instruments` (
 LOCK TABLES `instruments` WRITE;
 /*!40000 ALTER TABLE `instruments` DISABLE KEYS */;
 /*!40000 ALTER TABLE `instruments` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `insttypes`
+--
+
+DROP TABLE IF EXISTS `insttypes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `insttypes` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Instrument ID',
+  `instrument` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Instrument name',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `instrument` (`instrument`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `insttypes`
+--
+
+LOCK TABLES `insttypes` WRITE;
+/*!40000 ALTER TABLE `insttypes` DISABLE KEYS */;
+INSERT INTO `insttypes` VALUES (2,'Bass'),(1,'Cello'),(5,'Flute'),(6,'Piano'),(4,'Viola'),(3,'Violin');
+/*!40000 ALTER TABLE `insttypes` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -114,8 +171,9 @@ CREATE TABLE `users` (
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT 'User Email',
   `hash` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT 'User Hashed Password',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `username` (`username`,`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  UNIQUE KEY `username` (`username`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -136,4 +194,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-12-04  0:09:10
+-- Dump completed on 2014-12-04 20:34:51
