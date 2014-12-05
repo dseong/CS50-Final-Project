@@ -82,18 +82,20 @@
         $data["results"] = $query_res;
         $data["username"] = $_GET["username"];
         $data["members"] = $_GET["members"];
-        $data["instrument"] = $_GET["instrument"];
-        $data["skill"] = $_GET["skill"];
-        $data["genre"] = $_GET["genre"];
+        $data["selinstrument"] = $_GET["instrument"];
+        $data["selskill"] = $_GET["skill"];
+        $data["selgenre"] = $_GET["genre"];
+        $data["search"] = true;
     }
     else
     {
         $data["results"] = "";
         $data["username"] = "";
         $data["members"] = "";
-        $data["instrument"] = "";
-        $data["skill"] = "";
-        $data["genre"] = "";
+        $data["selinstrument"] = "";
+        $data["selskill"] = "";
+        $data["selgenre"] = "";
+        $data["search"] = false;
     }
     
     $data["skills"] = query("SELECT * FROM skills");
