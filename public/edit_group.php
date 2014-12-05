@@ -43,7 +43,7 @@
         
         // render succes form
         else
-            redirect("profile.php");
+            redirect("group.php?id=" . htmlspecialchars($_POST["id"]));
     } 
 
 ?>

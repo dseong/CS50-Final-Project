@@ -75,7 +75,7 @@
         
         //dump(array_merge([0 => $sql], $arguments));
         $query_res = call_user_func_array("query", array_merge([0 => $sql], $arguments));
-        dump($query_res);
+        //dump($query_res);
         
         $data["username"] = $_POST["username"];
         $data["members"] = $_POST["members"];

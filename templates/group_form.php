@@ -72,6 +72,9 @@
         <?php if($userisowner): ?>
             <a class="btn btn-primary" href="<?= "/request_response.php?id=".$groupid?>">View Applications</a>
         <?php endif; ?>
+                <?php if($userisowner): ?>
+            <a class="btn btn-primary" href="<?= "/edit_group.php?id=".$groupid?>">Edit Group</a>
+        <?php endif; ?>
         <?php if($userisowner): ?>
             <a class="btn btn-danger" href="<?= "/deletegroup.php?id=".$groupid?>">Delete Group</a>
         <?php endif; ?>

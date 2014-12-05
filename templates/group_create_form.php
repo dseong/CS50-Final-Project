@@ -29,7 +29,7 @@
         <div class="form-group">
             <input class="form-control" name="number" placeholder= "Number of other players" type="text"/>
         </div>
-        Skill level
+        Group Skill level
         <div class="form-group">
             <select class="form-control" name="skill">
                 <?php foreach($skills as $skill): ?>
