@@ -1,10 +1,10 @@
-<form action="search.php" method="post">
+<form action="search.php" method="get">
     <fieldset>
         <div class="form-group">
-            <input class="form-control" name="username" placeholder="Owner's Username" type="text"/>
+            <input class="form-control" <?php if(!empty($username))echo("value=\"".$username."\""); ?> name="username" placeholder="Owner's Username" type="text"/>
         </div>
         <div class="form-group">
-            <input class="form-control" name="members" placeholder="Group Members" type="text"/>
+            <input class="form-control" <?php if(!empty($members))echo("value=\"".$members."\""); ?> name="members" placeholder="Group Members" type="text"/>
         </div>
         <div class="form-group">
             <select class="form-control" name="instrument">
@@ -37,5 +37,31 @@
             </select>
         </div>
     </fieldset>
+    <input class="btn btn-default" type="hidden" name="search" value="yes"/>
     <input class="btn btn-default" type="submit" value="Search"/>
 </form>
+<?php if(!empty($results)): ?>
+    <hr/>
+    <table class="table">
+        <thead>
+            <tr>
+                <td>Group Name</td>
+                <td>Description</td>
+                <td>Skill</td>
+                <td>Owner</td>
+                <td>Members</td>
+            </tr>
+        </thead>
+        <?php foreach($results as $result): ?>
+            <tr>
+                <td><a <?php echo("href=\"/group.php?id=".htmlspecialchars($result["id"])."\""); ?>><?= htmlspecialchars($result["name"]); ?></a></td>
+                <td><?= htmlspecialchars($result["description"]); ?></td>
+                <td><?= htmlspecialchars($result["skill"]); ?></td>
+                <td><?= htmlspecialchars($result["username"]); ?></td>
+                <td>
+                    <?= htmlspecialchars($result["fullslot"]."/".$result["slotcnt"]) ?>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
+<?php endif; ?>

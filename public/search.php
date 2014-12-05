@@ -14,7 +14,7 @@
         - Genre
     */
     
-    if($_SERVER["REQUEST_METHOD"] === "POST")
+    if(array_key_exists("search", $_GET) && $_GET["search"] === "yes")
     {
         // User submitted the form
         $data["results"] = [];
@@ -22,36 +22,36 @@
         
         $arguments = [];
         $qstrs = [];
-        $sql = "SELECT G.id, G.name, U.username, G.description, S.description AS skill FROM groups AS G LEFT JOIN users AS U ON G.ownerid = U.id INNER JOIN skills AS S ON G.skill = S.id";
+        $sql = "SELECT G.id, G.name, U.username, G.description, S.description AS skill, (SELECT COUNT(id) FROM groupinsts WHERE groupid=G.id) as slotcnt, (SELECT COUNT(id) FROM groupinsts WHERE groupid=G.id AND userid IS NOT NULL) as fullslot FROM groups AS G LEFT JOIN users AS U ON G.ownerid = U.id INNER JOIN skills AS S ON G.skill = S.id";
         
-        if(array_key_exists("username", $_POST) && !empty($_POST["username"]))
+        if(array_key_exists("username", $_GET) && !empty($_GET["username"]))
         {
             $qstrs[] = "U.username = ?";
-            $arguments[] = $_POST["username"];
+            $arguments[] = $_GET["username"];
         }
         
-        if(array_key_exists("members", $_POST) && !empty($_POST["members"]))
+        if(array_key_exists("members", $_GET) && !empty($_GET["members"]))
         {
             $qstrs[] = "G.id IN (SELECT groupid FROM groupinsts AS GI LEFT JOIN users AS UD ON GI.userid=UD.id WHERE FIND_IN_SET(UD.username,?))";
-            $arguments[] = $_POST["members"];
+            $arguments[] = $_GET["members"];
         }
         
-        if(array_key_exists("instrument", $_POST) && !empty($_POST["instrument"]) && $_POST["instrument"] !== "--none--")
+        if(array_key_exists("instrument", $_GET) && !empty($_GET["instrument"]) && $_GET["instrument"] !== "--none--")
         {
             $qstrs[] = "G.id IN (SELECT groupid FROM groupinsts AS GI WHERE GI.instrument=? AND GI.userid IS NULL)";
-            $arguments[] = $_POST["instrument"];
+            $arguments[] = $_GET["instrument"];
         }
         
-        if(array_key_exists("skill", $_POST) && !empty($_POST["skill"]) && $_POST["skill"] !== "--none--")
+        if(array_key_exists("skill", $_GET) && !empty($_GET["skill"]) && $_GET["skill"] !== "--none--")
         {
             $qstrs[] = "G.skill = ?";
-            $arguments[] = $_POST["skill"];
+            $arguments[] = $_GET["skill"];
         }
         
-        if(array_key_exists("genre", $_POST) && !empty($_POST["genre"]) && $_POST["genre"] !== "--none--")
+        if(array_key_exists("genre", $_GET) && !empty($_GET["genre"]) && $_GET["genre"] !== "--none--")
         {
             $qstrs[] = "G.genre = ?";
-            $arguments[] = $_POST["genre"];
+            $arguments[] = $_GET["genre"];
         }
         
         if(!empty($qstrs))
@@ -73,15 +73,27 @@
         }
         $sql = $sql . " LIMIT 30";
         
-        //dump(array_merge([0 => $sql], $arguments));
         $query_res = call_user_func_array("query", array_merge([0 => $sql], $arguments));
-        //dump($query_res);
+        if($query_res === false)
+        {
+            apologize("An error occurred while performing your search.");
+        }
         
-        $data["username"] = $_POST["username"];
-        $data["members"] = $_POST["members"];
-        $data["instrument"] = $_POST["instrument"];
-        $data["skill"] = $_POST["skill"];
-        $data["genre"] = $_POST["genre"];
+        $data["results"] = $query_res;
+        $data["username"] = $_GET["username"];
+        $data["members"] = $_GET["members"];
+        $data["instrument"] = $_GET["instrument"];
+        $data["skill"] = $_GET["skill"];
+        $data["genre"] = $_GET["genre"];
+    }
+    else
+    {
+        $data["results"] = "";
+        $data["username"] = "";
+        $data["members"] = "";
+        $data["instrument"] = "";
+        $data["skill"] = "";
+        $data["genre"] = "";
     }
     
     $data["skills"] = query("SELECT * FROM skills");
