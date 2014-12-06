@@ -49,7 +49,15 @@
                     <?php endif; ?>
                 <td><?= $slot["instrument"] ?></td>
                 <?php if($userisowner): ?>
-                    <td><a class="btn btn-default btn-xs" href="<?= "/removemem.php?id=".$slot["id"]."&groupid=".$slot["groupid"] ?>">Remove</a></td>
+                    <?php if(!is_null($slot["username"])): ?>
+                        <td>
+                            <a class="btn btn-default btn-xs" href="<?= "/removemem.php?id=".$slot["id"]."&groupid=".$slot["groupid"] ?>">
+                                Remove
+                            </a>
+                        </td>
+                        <?php else: ?>
+                            <td></td>
+                    <?php endif; ?>
                     <?php endif; ?>
            </tr>
         <?php endforeach ?>
