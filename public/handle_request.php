@@ -33,7 +33,7 @@
                         query("DELETE FROM applications WHERE id = ?", $_GET["id"]);    
                                    
                         // redirect to request list page
-                        redirect("request_response.php");
+                        redirect("request_response.php?id=" . $_GET["groupid"]);
                     }
                 }
                 apologize("The group doesn't need any more of this instrument");
@@ -41,9 +41,9 @@
             
             // delete request (need this if person wasn't added)
             query("DELETE FROM applications WHERE id = ?", $_GET["id"]);
-            
+ 
             // redirect to request list page
-            redirect("request_response.php");
+            redirect("request_response.php?id=" . $_GET["groupid"]);
         }
         
         // else render login form

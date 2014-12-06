@@ -62,7 +62,7 @@
             <a class="btn btn-warning" href="<?= "/leavegroup.php?id=".$groupid?>">Leave Group</a>
         <?php endif; ?>
         <?php if($userisowner): ?>
-            <a class="btn btn-primary" href="<?= "/application_view.php?id=".$groupid?>">Delete Group</a>
+            <a class="btn btn-primary" href="<?= "/request_response.php?id=".$groupid?>">View Applications</a>
         <?php endif; ?>
         <?php if($userisowner): ?>
             <a class="btn btn-danger" href="<?= "/deletegroup.php?id=".$groupid?>">Delete Group</a>
