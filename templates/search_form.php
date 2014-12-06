@@ -8,7 +8,7 @@
         </div>
         <div class="form-group">
             <select class="form-control" name="instrument">
-                <option value="--none--">Looking for instrument</option>
+                <option value="--none--">Open Slot for Instrument</option>
                 <?php foreach($instruments as $instrument): ?>
                     <option value="<?= htmlspecialchars($instrument["instrument"]) ?>">
                         <?= htmlspecialchars($instrument["instrument"]) ?>
@@ -18,7 +18,7 @@
         </div>
         <div class="form-group">
             <select class="form-control" name="skill">
-                <option value="--none--">Choose a skill level</option>
+                <option value="--none--">Group Skill Level</option>
                 <?php foreach($skills as $skill): ?>
                     <option value="<?= htmlspecialchars($skill["id"]) ?>">
                         <?= htmlspecialchars($skill["description"]) ?>
@@ -28,7 +28,7 @@
         </div>
         <div class="form-group">
             <select class="form-control" name="genre">
-                <option value="--none--">Choose a genre</option>
+                <option value="--none--">Group Genre</option>
                 <?php foreach($genres as $genre): ?>
                     <option value="<?= htmlspecialchars($genre["name"]) ?>">
                         <?= htmlspecialchars($genre["name"]) ?>
