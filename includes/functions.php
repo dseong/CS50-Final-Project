@@ -231,5 +231,22 @@
             trigger_error("Invalid template: $template", E_USER_ERROR);
         }
     }
+    
+    // check to see if user is logged in
+    function logged_in()
+    {
+        return !empty($_SESSION["id"]);
+    }
+    
+    function user_name()
+    {
+        $query_res = query("SELECT username FROM users WHERE id=?", $_SESSION["id"]);
+        if($query_res === false)
+        {
+            return "";
+        }
+        $_SESSION["uname"] = $query_res[0]["username"];
+        return $query_res[0]["username"];
+    }
 
 ?>

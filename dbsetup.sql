@@ -33,9 +33,9 @@ CREATE TABLE `applications` (
   KEY `userid` (`userid`),
   KEY `instrument` (`instrument`),
   KEY `groupid` (`groupid`),
-  CONSTRAINT `applications_ibfk_3` FOREIGN KEY (`instrument`) REFERENCES `insttypes` (`instrument`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `applications_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `applications_ibfk_2` FOREIGN KEY (`groupid`) REFERENCES `groups` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `applications_ibfk_2` FOREIGN KEY (`groupid`) REFERENCES `groups` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `applications_ibfk_3` FOREIGN KEY (`instrument`) REFERENCES `insttypes` (`instrument`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -92,7 +92,7 @@ CREATE TABLE `groupinsts` (
   CONSTRAINT `groupinsts_ibfk_1` FOREIGN KEY (`groupid`) REFERENCES `groups` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `groupinsts_insttype` FOREIGN KEY (`instrument`) REFERENCES `insttypes` (`instrument`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `groupinsts_userid` FOREIGN KEY (`userid`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -121,9 +121,11 @@ CREATE TABLE `groups` (
   PRIMARY KEY (`id`),
   KEY `ownerid` (`ownerid`),
   KEY `genre` (`genre`),
+  KEY `skill` (`skill`),
   CONSTRAINT `groups_genre` FOREIGN KEY (`genre`) REFERENCES `genres` (`name`) ON UPDATE CASCADE,
-  CONSTRAINT `groups_ownerid` FOREIGN KEY (`ownerid`) REFERENCES `users` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  CONSTRAINT `groups_ownerid` FOREIGN KEY (`ownerid`) REFERENCES `users` (`id`) ON UPDATE CASCADE,
+  CONSTRAINT `groups_skill` FOREIGN KEY (`skill`) REFERENCES `skills` (`id`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -153,7 +155,7 @@ CREATE TABLE `instruments` (
   KEY `instrument` (`instrument`),
   CONSTRAINT `instrument_type` FOREIGN KEY (`instrument`) REFERENCES `insttypes` (`instrument`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `instrument_userid` FOREIGN KEY (`userid`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -191,6 +193,30 @@ INSERT INTO `insttypes` VALUES (2,'Bass'),(1,'Cello'),(5,'Flute'),(6,'Piano'),(4
 UNLOCK TABLES;
 
 --
+-- Table structure for table `skills`
+--
+
+DROP TABLE IF EXISTS `skills`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `skills` (
+  `id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
+  `description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `skills`
+--
+
+LOCK TABLES `skills` WRITE;
+/*!40000 ALTER TABLE `skills` DISABLE KEYS */;
+INSERT INTO `skills` VALUES (1,'Beginner'),(2,'Casual'),(3,'Average'),(4,'Advanced'),(5,'Expert');
+/*!40000 ALTER TABLE `skills` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `users`
 --
 
@@ -206,7 +232,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -227,4 +253,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-12-05  0:25:23
+-- Dump completed on 2014-12-05 19:29:18

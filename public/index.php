@@ -3,7 +3,12 @@
     // configuration
     require("../includes/config.php"); 
 
-    // render portfolio
-    render("portfolio.php", ["title" => "Portfolio"]);
-
+    if(logged_in())
+    {
+        redirect("profile.php");
+    }
+    else
+    {
+        render("home.php", ["title" => "Home"]);
+    }
 ?>
