@@ -1,8 +1,8 @@
 <p class="lead text-danger">
-    Sorry!
+    <h2>Sorry!</h2>
 </p>
 <p class="text-danger">
-    <?= htmlspecialchars($message) ?>
+    <h3><?= htmlspecialchars($message) ?></h3>
 </p>
 
-<a href="javascript:history.go(-1);">Back</a>
+<a class="btn btn-primary" href="javascript:history.go(-1);"><span class="glyphicon glyphicon-arrow-left"></span></a>
