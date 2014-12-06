@@ -1,3 +1,4 @@
+<h3>Choose Your Instrument</h3>
 <form action="addinstrument.php" method="post">
     <fieldset>
         <div class="form-group">

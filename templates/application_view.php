@@ -15,8 +15,8 @@
             <td><?= htmlspecialchars($app["username"]); ?></td>
             <td><?= htmlspecialchars($app["instrument"]); ?></td>
             <td><?= htmlspecialchars($app["message"]); ?></td>
-            <td><a class="btn btn-primary btn-xs" href="<?= "/handle_request.php?id=" . $app["id"] . "&groupid=" . $groupid . "&userid=" . $app["userid"] . "&instrument=" . $app["instrument"] . "&choice=1" ?>">Accept</a></td>
-            <td><a class="btn btn-danger btn-xs" href="<?= "/handle_request.php?groupid=" . $groupid . "&choice=0" . "&id=" . $app["id"] ?>">Decline</a></td>
+            <td><a class="btn btn-primary btn-xs" href="<?= "/handle_request.php?id=" . $app["id"] . "&accept=yes" ?>">Accept</a></td>
+            <td><a class="btn btn-danger btn-xs" href="<?= "/handle_request.php?id=" . $app["id"] . "&accept=no"?>">Decline</a></td>
        </tr>
        <?php endforeach; ?>
    </table>

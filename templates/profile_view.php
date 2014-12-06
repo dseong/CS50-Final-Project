@@ -2,7 +2,7 @@
     <h3 class="datahead">Your Profile</h3>
     <span class="datakey">Name: </span> <?= htmlspecialchars($name); ?><br>
     <span class="datakey">Username: </span> <?= htmlspecialchars($username); ?><br>
-    <span class="datakey">Email: </span> <?= htmlspecialchars($email); ?><br>
+    <span class="datakey">Email: </span> <a href = "<?= "mailto:" .$email ?>"><?= htmlspecialchars($email) ?></a><br>
     <a class="btn btn-primary" href="/edit_profile.php">Edit Profile</a>
 </div>
 

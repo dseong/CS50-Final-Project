@@ -21,7 +21,10 @@
         apologize("Please provide username"); 
         
         if (empty($_POST["email"]))
-        apologize("Please provide username"); 
+        apologize("Please provide username");
+        
+        if (preg_match("^\S+@\S+(\.[A-Za-z]+)$^", $_POST["email"]) !== 1)
+        apologize("Please provide a valid email");
         
         else if (empty($_POST["password"]))
         apologize("Please provide a password");
@@ -35,6 +38,7 @@
         if (query("INSERT INTO users (username, hash, name, email) VALUES(?, ?, ?, ?)", $_POST["username"], crypt($_POST["password"]), $_POST["name"], $_POST["email"]) === false)
             apologize("This username is already being used");
         
+        // else grabs user id that just registered and automatically logs them in
         else
         {
             $rows = query("SELECT LAST_INSERT_ID() AS id");

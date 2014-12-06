@@ -39,7 +39,10 @@
     right: 8px;
     color: white !important;
 }
-
+.logo
+{
+    margin-top: -15px;
+}
 #home-info p, #home-info h2
 {
     color: white !important;
@@ -86,9 +89,13 @@ body {
 }
 
 footer {
-  position: absolute;
+  position: bottom;
   text-align: center;
   bottom: 0;
   /* Set the fixed height of the footer here */
   height: 40px;
 }
+
+
+
+

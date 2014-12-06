@@ -1,3 +1,5 @@
+<h3>Please Fill Out the Following Information</h3>
+<br/>
 <form action="create_group.php" method="post">
     <fieldset>
         <div class="form-group">
