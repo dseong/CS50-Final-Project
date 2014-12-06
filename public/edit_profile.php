@@ -30,6 +30,8 @@
             apologize("Please provide username");
         else if (empty($_POST["email"]))
             apologize("Please provide email");
+        if (preg_match("^\S+@\S+(\.[A-Za-z]+)$^", $_POST["email"]) !== 1)
+            apologize("Please provide a valid email");
         else if (empty($_POST["username"]))
             apologize("Please provide name");
             
