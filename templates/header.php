@@ -64,9 +64,9 @@
                         <a class="navbar-brand" href="/">MusicMates</a>
                     </div>
                     <div id="navbar" class="navbar-collapse collapse">
-                        <ul class="nav navbar-nav">
-                            <li><a href="login.php">Log In</a></li>
+                        <ul class="nav navbar-nav navbar-right">
                             <li><a href="register.php">Register</a></li>
+                            <li><a href="login.php">Log In</a></li>
                         </ul>
                     </div>
                 </div>
