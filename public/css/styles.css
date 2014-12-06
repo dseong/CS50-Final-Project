@@ -9,10 +9,45 @@
 
 #middle, #bottom
 {
-    /* center contents */
+    text-align: center;
     margin-left: auto;
     margin-right: auto;
-    text-align: center;
+}
+
+.content-left
+{
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#home-info
+{
+    background-image: url("/img/homebg.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: rgba(255,255,255,0.5);
+    position: relative;
+}
+
+#img-attr
+{
+    float: right;
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    color: white !important;
+}
+
+#home-info p, #home-info h2
+{
+    color: white !important;
+    text-shadow:
+   -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+     1px 1px 0 #000 !important;
 }
 
 #middle .form-control
@@ -31,4 +66,17 @@
 
     /* surround with whitespace */
     margin: 20px;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 40px;
+}
+
+footer {
+  position: absolute;
+  text-align: center;
+  bottom: 0;
+  /* Set the fixed height of the footer here */
+  height: 40px;
 }
