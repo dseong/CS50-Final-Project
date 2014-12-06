@@ -36,6 +36,24 @@
             $arguments[] = $_POST["members"];
         }
         
+        if(array_key_exists("instrument", $_POST) && !empty($_POST["instrument"]) && $_POST["instrument"] !== "--none--")
+        {
+            $qstrs[] = "G.id IN (SELECT groupid FROM groupinsts AS GI WHERE GI.instrument=? AND GI.userid IS NULL)";
+            $arguments[] = $_POST["instrument"];
+        }
+        
+        if(array_key_exists("skill", $_POST) && !empty($_POST["skill"]) && $_POST["skill"] !== "--none--")
+        {
+            $qstrs[] = "G.skill = ?";
+            $arguments[] = $_POST["skill"];
+        }
+        
+        if(array_key_exists("genre", $_POST) && !empty($_POST["genre"]) && $_POST["genre"] !== "--none--")
+        {
+            $qstrs[] = "G.genre = ?";
+            $arguments[] = $_POST["genre"];
+        }
+        
         if(!empty($qstrs))
         {
             $sql = $sql . " WHERE";
@@ -53,6 +71,7 @@
                 }
             }
         }
+        $sql = $sql . " LIMIT 30";
         
         //dump(array_merge([0 => $sql], $arguments));
         $query_res = call_user_func_array("query", array_merge([0 => $sql], $arguments));
