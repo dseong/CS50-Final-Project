@@ -18,11 +18,17 @@
     {
         // User submitted the form
         $data["results"] = [];
-        
+        $data["restore"] = true;
+        $data["username"] = $_POST["username"];
+        $data["members"] = $_POST["members"];
+        $data["instrument"] = $_POST["instrument"];
+        $data["skill"] = $_POST["skill"];
+        $data["genre"] = $_POST["genre"];
     }
     
     $data["skills"] = query("SELECT * FROM skills");
     $data["instruments"] = query("SELECT * FROM insttypes");
     $data["genres"] = query("SELECT * FROM genres");
+    $data["title"] = "Search";
     render("search_form.php", $data);
 ?>
