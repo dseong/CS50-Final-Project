@@ -19,6 +19,45 @@
         // User submitted the form
         $data["results"] = [];
         $data["restore"] = true;
+        
+        $arguments = [];
+        $qstrs = [];
+        $sql = "SELECT G.id, G.name, U.username, G.description, S.description AS skill FROM groups AS G LEFT JOIN users AS U ON G.ownerid = U.id INNER JOIN skills AS S ON G.skill = S.id";
+        
+        if(array_key_exists("username", $_POST) && !empty($_POST["username"]))
+        {
+            $qstrs[] = "U.username = ?";
+            $arguments[] = $_POST["username"];
+        }
+        
+        if(array_key_exists("members", $_POST) && !empty($_POST["members"]))
+        {
+            $qstrs[] = "G.id IN (SELECT groupid FROM groupinsts AS GI LEFT JOIN users AS UD ON GI.userid=UD.id WHERE FIND_IN_SET(UD.username,?))";
+            $arguments[] = $_POST["members"];
+        }
+        
+        if(!empty($qstrs))
+        {
+            $sql = $sql . " WHERE";
+            $first = true;
+            foreach($qstrs as $qstr)
+            {
+                if($first)
+                {
+                    $sql = $sql . " " . $qstr;
+                    $first = false;
+                }
+                else
+                {
+                    $sql = $sql . " AND " . $qstr;
+                }
+            }
+        }
+        
+        //dump(array_merge([0 => $sql], $arguments));
+        $query_res = call_user_func_array("query", array_merge([0 => $sql], $arguments));
+        dump($query_res);
+        
         $data["username"] = $_POST["username"];
         $data["members"] = $_POST["members"];
         $data["instrument"] = $_POST["instrument"];
