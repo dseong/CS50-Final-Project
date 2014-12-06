@@ -27,7 +27,7 @@
             </select>
         </div>
         <div class="form-group">
-            <select class="form-control" formname="genre">
+            <select class="form-control" name="genre">
                 <option value="--none--">Choose a genre</option>
                 <?php foreach($genres as $genre): ?>
                     <option value="<?= htmlspecialchars($genre["name"]) ?>">
