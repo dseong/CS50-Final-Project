@@ -1,8 +1,10 @@
 <form action="edit_group.php" method="post">
     <fieldset>
+        Group Name
         <div class="form-group">
             <input autofocus class="form-control" name="name" value= "<?= htmlspecialchars($name) ?>"  type="text"/>
         </div>
+        Musical Genre
         <div class="form-group">
             <select class="form-control" name="genre">
                 <?php foreach($genres as $genre): ?>
@@ -11,9 +13,11 @@
 
             </select>
         </div>
+        Group Description
         <div class="form-group">
             <textarea class="form-control" name="description" cols = "40" rows = "4"><?= htmlspecialchars($description) ?></textarea>
         </div>
+        Group Skill Level
         <div class="form-group">
             <select class="form-control" name="skill">
                 <option value="1">Casual</option>
