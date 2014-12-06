@@ -2,7 +2,7 @@
     <h3 class="datahead">Your Profile</h3>
     <span class="datakey">Name: </span> <?= htmlspecialchars($name); ?><br>
     <span class="datakey">Username: </span> <?= htmlspecialchars($username); ?><br>
-    <span class="datakey">Email: </span> <a href = "<?= "mailto:" .$email ?>"><?= htmlspecialchars($email) ?></a><br>
+    <span class="datakey">Email: </span> <a href = "<?= "mailto:" .$email ?>"><?= htmlspecialchars($email) ?></a><br/><br/>
     <a class="btn btn-primary" href="/edit_profile.php">Edit Profile</a>
 </div>
 
@@ -28,7 +28,7 @@
             <h3 class="datahead">Your Group Memberships</h3>
             <?php foreach($memberships as $memb): ?>
                 <tr>
-                    <td><a class="btn btn-warning btn-xs" href="<?= "/group.php?id=".$memb["gid"] ?>"><?= htmlspecialchars($memb["name"]) ?></td>
+                    <td><a href="<?= "/group.php?id=".$memb["gid"] ?>"><?= htmlspecialchars($memb["name"]) ?></td>
                     <td><?= htmlspecialchars($memb["instrument"]) ?></td>
                 </tr>
             <?php endforeach; ?>
@@ -46,7 +46,7 @@
             <h3 class="datahead">Groups You Own</h3>
             <?php foreach($owned as $own): ?>
                 <tr>
-                    <td><a class="btn btn-warning btn-xs" href="<?= "/group.php?id=".$own["id"] ?>"><?= htmlspecialchars($own["name"]) ?></td>
+                    <td><a href="<?= "/group.php?id=".$own["id"] ?>"><?= htmlspecialchars($own["name"]) ?></td>
                     <td><?= htmlspecialchars($own["fullslot"]."/".$own["slotcnt"]) ?></td>
                 </tr>
             <?php endforeach; ?>
