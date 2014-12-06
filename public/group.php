@@ -16,7 +16,7 @@
     $userismember = false;
     
     // pulls all of group info while merging owner's userid with the owner's username and email
-    $groupinfo = query("SELECT users.name AS uname, groups.name AS gname, username, ownerid, description, genre, skill, email FROM groups LEFT JOIN users ON groups.ownerid = users.id WHERE groups.id = ?", $groupid);
+    $groupinfo = query("SELECT users.name AS uname, groups.name AS gname, username, ownerid, groups.description, genre, S.description AS skill, email FROM groups LEFT JOIN users ON groups.ownerid = users.id INNER JOIN skills AS S ON groups.skill = S.id WHERE groups.id = ?", $groupid);
     // pulls all of info regarding slots in group including members
     $groupslots = query("SELECT users.username, users.email, users.name, groupinsts.instrument, groupinsts.id, groupinsts.groupid FROM groupinsts LEFT JOIN users ON users.id = groupinsts.userid WHERE groupinsts.groupid = ?", $groupid);
     // to check whether user is member or not

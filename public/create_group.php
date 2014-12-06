@@ -22,12 +22,14 @@
             $genres = [];
             
             $data = query("SELECT * FROM genres");
+            $skills = query("SELECT * FROM skills");
             
             foreach($data as $datum)
             {
                 $genres[] = $datum["name"];
             }
-            render("group_create_form.php", ["genres" => $genres, "instruments" => $instruments]);
+            render("group_create_form.php", ["title" => "Create Group", "genres" => $genres, "instruments" => $instruments,
+                                             "skills" => $skills]);
         }
         
         // else render login form
@@ -66,7 +68,7 @@
             $id = $rows[0]["id"];
             
             // enter owner's instrument into database
-            query("INSERT INTO groupinsts (groupid, instrument) VALUES(?, ?)", $id, $_POST["instrument"]);
+            query("INSERT INTO groupinsts (groupid, instrument, userid) VALUES(?, ?, ?)", $id, $_POST["instrument"], $_SESSION["id"]);
             
             $instruments = [];
             

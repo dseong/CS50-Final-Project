@@ -32,9 +32,10 @@
         Skill level
         <div class="form-group">
             <select class="form-control" name="skill">
-                <option value="1">Casual</option>
-                <option value="2">Intermediate</option>
-                <option value="3">Advanced</option>
+                <?php foreach($skills as $skill): ?>
+                    <option value="<?= htmlspecialchars($skill["id"]) ?>"><?= htmlspecialchars($skill["description"]) ?></option>
+                <?php endforeach; ?>
+
             </select>
         </div>
         <div class="form-group">
