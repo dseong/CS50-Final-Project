@@ -33,6 +33,7 @@
     {    
         $userisowner = ($groupinfo[0]["ownerid"] === $_SESSION["id"]);
         $userismember = !empty($memberquery) || $userisowner;
+        $userisrealmember = !empty($memberquery);
     }
     
     // array with all the necessary info to display
@@ -40,6 +41,7 @@
     $data["groupinfo"] = $groupinfo[0];
     $data["userisowner"] = $userisowner;
     $data["userismember"] = $userismember;
+    $data["userisrealmember"] = $userisrealmember;
     $data["slots"] = $groupslots;
     $data["title"] = "View Group";
     $data["groupid"] = $groupid;

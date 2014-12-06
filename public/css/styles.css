@@ -7,7 +7,7 @@
  * Global CSS.
  */
 
-.container
+#middle, #bottom
 {
     /* center contents */
     margin-left: auto;
