@@ -15,7 +15,7 @@
         <tr>
             <?php if($userismember): ?><td><?= $groupinfo["uname"] ?></td><?php endif; ?>
             <td><?= $groupinfo["username"] ?></td>
-            <?php if($userismember): ?><td><?= $groupinfo["email"] ?></td><?php endif; ?>
+            <?php if($userismember): ?><td><a href = "<?= "mailto:" .$groupinfo["email"] ?>"><?= htmlspecialchars($groupinfo["email"]) ?></a><?php endif; ?>
             <td><?= $groupinfo["gname"] ?></td>
             <td><?= $groupinfo["description"] ?></td>
             <td><?= $groupinfo["genre"] ?></td>
@@ -45,7 +45,7 @@
                         <td><?= $slot["username"] ?></td>
                     <?php endif; ?>
                 <?php if($userismember): ?>
-                    <td><?= $slot["email"] ?></td>
+                    <td><a href = "<?= "mailto:" .$slot["email"] ?>"><?= htmlspecialchars($slot["email"]) ?></a></td>
                     <?php endif; ?>
                 <td><?= $slot["instrument"] ?></td>
                 <?php if($userisowner): ?>

@@ -50,6 +50,18 @@
      1px 1px 0 #000 !important;
 }
 
+.datakey
+{
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.space
+{
+    width: 25px;
+    display: inline-block;
+}
+
 #middle .form-control
 {
     /* center form controls */

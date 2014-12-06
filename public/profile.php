@@ -24,6 +24,7 @@
     // Store out the relevant data for the template
     $data["name"]  = $user[0]["name"];
     $data["email"] = $user[0]["email"];
+    $data["username"] = $user[0]["username"];
     $data["instruments"] = $instruments;
     $data["memberships"] = $memberships;
     $data["owned"] = $owned;

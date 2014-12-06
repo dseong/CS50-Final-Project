@@ -8,7 +8,9 @@
     if($_SERVER["REQUEST_METHOD"] == "GET")
     {
         // Delete user's instrument
-        $user = query("DELETE FROM instruments WHERE userid=? AND id=?", $userid, $_GET["id"]);
+        if(query("DELETE FROM instruments WHERE userid=? AND id=?", $userid, $_GET["id"]) === FALSE)
+            apologize("An error occurred while deleting the instrument");
+        redirect("profile.php");
     }
     
     apologize("An error occurred while deleting the user.");

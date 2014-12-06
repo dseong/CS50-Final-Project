@@ -1,18 +1,23 @@
 <div class="datacont">
-    <p class="datahead">Your Profile</p>
-    <p><span class="datakey">Name: </span> <?= htmlspecialchars($name); ?></p>
-    <p><span class="datakey">Email: </span> <?= htmlspecialchars($email); ?></p>
-    <a href="/edit_profile.php">Edit Profile</a>
+    <h3 class="datahead">Your Profile</h3>
+    <span class="datakey">Name: </span> <?= htmlspecialchars($name); ?><br>
+    <span class="datakey">Username: </span> <?= htmlspecialchars($username); ?><br>
+    <span class="datakey">Email: </span> <?= htmlspecialchars($email); ?><br>
+    <a class="btn btn-primary" href="/edit_profile.php">Edit Profile</a>
 </div>
+
+<br>
 <div class="datacont">
     <?php if(!empty($instruments)): ?>
-        <p class="datahead">Your Instruments</p>
+        <h3 class="datahead">Your Instruments</h3>
         <?php foreach($instruments as $inst): ?>
-            <p><?= htmlspecialchars($inst["instrument"]); ?> <a href="<?= "/delinst.php?id=" . $inst["id"]?>">Delete</a></p>
+            <p><b><?= htmlspecialchars($inst["instrument"]); ?></b><span class="space"></span><a class="btn btn-danger btn-xs" href="<?= "/delinst.php?id=" . $inst["id"]?>">Delete</a></p>
         <?php endforeach; ?>
     <?php endif; ?>
-    <a href="/addinstrument.php">Add Instrument</a>
     
+<a class="btn btn-primary" href="addinstrument.php">Add Instrument</a>
+<br><br>
+
 <?php if(!empty($memberships)): ?>
     <div class="datacont">
         <table class="table">
@@ -20,10 +25,10 @@
                 <td>Group Name</td>
                 <td>Group Instrument</td>
             </thead>
-            <p class="datahead">Your Group Memberships</p>
+            <h3 class="datahead">Your Group Memberships</h3>
             <?php foreach($memberships as $memb): ?>
                 <tr>
-                    <td><a href="<?= "/group.php?id=".$memb["gid"] ?>"><?= htmlspecialchars($memb["name"]) ?></td>
+                    <td><a class="btn btn-warning btn-xs" href="<?= "/group.php?id=".$memb["gid"] ?>"><?= htmlspecialchars($memb["name"]) ?></td>
                     <td><?= htmlspecialchars($memb["instrument"]) ?></td>
                 </tr>
             <?php endforeach; ?>
@@ -38,10 +43,10 @@
                 <td>Group Name</td>
                 <td>Members</td>
             </thead>
-            <p class="datahead">Groups You Own</p>
+            <h3 class="datahead">Groups You Own</h3>
             <?php foreach($owned as $own): ?>
                 <tr>
-                    <td><a href="<?= "/group.php?id=".$own["id"] ?>"><?= htmlspecialchars($own["name"]) ?></td>
+                    <td><a class="btn btn-warning btn-xs" href="<?= "/group.php?id=".$own["id"] ?>"><?= htmlspecialchars($own["name"]) ?></td>
                     <td><?= htmlspecialchars($own["fullslot"]."/".$own["slotcnt"]) ?></td>
                 </tr>
             <?php endforeach; ?>
