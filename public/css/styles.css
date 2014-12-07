@@ -65,6 +65,11 @@
     display: inline-block;
 }
 
+#searchform
+{
+    text-align: left;
+}
+
 #middle .form-control
 {
     /* center form controls */
