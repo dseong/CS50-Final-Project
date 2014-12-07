@@ -10,7 +10,8 @@
      */
 
     // display errors, warnings, and notices
-    ini_set("display_errors", true);
+    ini_set("display_errors", false);
+    ini_set("default_charset", "utf-8");
     error_reporting(E_ALL);
 
     // requirements
