@@ -6,7 +6,7 @@
     // array for dropdown menu populated with list of valid instruments from sql table
     $instruments = [];
             
-    $data = query("SELECT * FROM insttypes");
+    $data = query("SELECT instrument FROM instruments WHERE userid = ?", $_SESSION["id"]);
             
     foreach($data as $datum)
     {
