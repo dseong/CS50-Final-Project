@@ -67,7 +67,7 @@
     </table>
         <hr/>
         <h3>Group Actions</h3>
-        <?php if(!$commoninst): ?>
+        <?php if(!$commoninst && !$userisrealmember): ?>
             <div>
                 <p><span class="text-info">You do not play an instrument needed by this group.</span></p>
                 <p><a class="btn btn-primary" href="/profile.php">Edit your profile</a></p>
