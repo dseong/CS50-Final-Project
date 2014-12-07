@@ -9,12 +9,12 @@
     // fetching instrument types from central list on php myadmin
     $instruments = [];
             
-            $data = query("SELECT * FROM insttypes");
-            
-            foreach($data as $datum)
-            {
-                $instruments[] = $datum["instrument"];
-            }
+    $data = query("SELECT * FROM insttypes");
+    
+    foreach($data as $datum)
+    {
+        $instruments[] = $datum["instrument"];
+    }
     
     // adding instrument        
     if ($_SERVER["REQUEST_METHOD"] == "POST")
