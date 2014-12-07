@@ -64,9 +64,9 @@
     </table>
         <hr/>
         <h3>Group Actions</h3>
-        <?php if(!$userisrealmember): ?>
+        <?php if(!$userisrealmember && $commoninst): ?>
             <a class="btn btn-primary" href="<?= "/joingroup.php?id=".$groupid?>">Join</a>
-        <?php else: ?>
+        <?php elseif($userisrealmember): ?>
             <a class="btn btn-warning" href="<?= "/leavegroup.php?id=".$groupid?>">Leave Group</a>
         <?php endif; ?>
         <?php if($userisowner): ?>
