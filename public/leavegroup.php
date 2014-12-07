@@ -1,5 +1,7 @@
 <?php
-
+/*
+// allows owner or member of a group to leave the group
+*/
     // configuration
     require("../includes/config.php");
     

@@ -1,5 +1,8 @@
 <?php
-
+/*
+// controller to display user's profile info on profile page
+// displayed info include name, email, username, instrument(s) played, groups owned, and groups that you are part of
+*/
     // Include configuration
     require("../includes/config.php");
 

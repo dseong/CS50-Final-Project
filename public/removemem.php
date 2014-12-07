@@ -1,5 +1,7 @@
 <?php
-
+/*
+// allows owner to remove member from group
+*/
     // Include configuration
     require("../includes/config.php");
     

@@ -1,4 +1,7 @@
 <?php
+/*
+// Controller for adding instruments that user plays to his/her profile page
+*/
 
     // configuration
     require("../includes/config.php");

@@ -1,3 +1,4 @@
+<!--form for adding instrument when creating a group-->
 <form action="group_instruments.php" method="post">
     <fieldset>
         <?php for($i = 0; $i < $number; $i++): ?>

@@ -1,5 +1,7 @@
 <?php
-
+/*
+// part of controller to send the request to join a group along with the message
+*/
     // configuration
     require("../includes/config.php");
     

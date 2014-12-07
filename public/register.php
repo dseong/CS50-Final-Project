@@ -1,5 +1,8 @@
 <?php
-
+/*
+// allows user to register for an account
+// error checks the fields for unqiue username, matching passwords, and valid email (using pregmatch)
+*/
     // configuration
     require("../includes/config.php");
 

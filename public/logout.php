@@ -1,5 +1,7 @@
 <?php
-
+/*
+// allows user to log out
+*/
     // configuration
     require("../includes/config.php"); 
 

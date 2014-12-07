@@ -1,5 +1,7 @@
 <?php
-
+/*
+// allows user to create new chamber group
+*/
     // configuration
     require("../includes/config.php");
     

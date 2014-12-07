@@ -1,5 +1,8 @@
 <?php
-
+/*
+// displays information about the group
+// fields displayed include the information about the group as well as owner and open slots/occupied slots with member information
+*/
     // configuration
     require("../includes/config.php");
     

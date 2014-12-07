@@ -1,5 +1,9 @@
 <?php
-
+/*
+// implements the search function of our website
+// user can search for a group with one or multiple bounds
+// results will satisfy all bounds inputted so multiple bounds can be used to narrow down interest
+*/
     // Include configuration
     require("../includes/config.php");
 

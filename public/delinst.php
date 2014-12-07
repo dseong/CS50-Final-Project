@@ -1,5 +1,7 @@
 <?php
-
+/*
+// allows user to update his/her profile to delete an instrument they had previously selected to indicate they played
+*/
     // Include configuration
     require("../includes/config.php");
 

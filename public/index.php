@@ -1,5 +1,5 @@
 <?php
-
+// sends user to homepage when logged in or displays home page if not
     // configuration
     require("../includes/config.php"); 
 

@@ -1,5 +1,8 @@
 <?php
-
+/*
+// edit user's own profile
+// fields available to be edited include username, name, email
+*/
     // configuration
     require("../includes/config.php");
     

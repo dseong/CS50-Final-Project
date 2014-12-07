@@ -1,5 +1,8 @@
 <?php
-
+/*
+// login page controller
+// checks for proper username/password combination
+*/
     // configuration
     require("../includes/config.php"); 
 

@@ -1,5 +1,7 @@
 <?php
-
+/*
+// accepts or declines user's request
+*/
     // configuration
     require("../includes/config.php");
     

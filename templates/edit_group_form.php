@@ -1,3 +1,4 @@
+<!--To modify group info, only displayed when owner of group is trying to modify the group info-->
 <form action="edit_group.php" method="post">
     <fieldset>
         Group Name

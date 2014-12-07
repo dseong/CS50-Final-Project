@@ -1,4 +1,5 @@
 <div>
+    <!--Group info visible to everyone except name and email which is only available for members of group-->
     <h3>Group Information</h3>
     <table class= "table"> 
         <thead>
@@ -24,6 +25,7 @@
    </table>
    <hr/>
     <h3>Group Members</h3>
+    <!--letes everyone view username and instrument of members, but not email or name unless you are a member-->
     <table class= "table"> 
         <thead>
             <tr>
@@ -61,6 +63,7 @@
                     <?php endif; ?>
            </tr>
         <?php endforeach ?>
+    <!--Table of options visible only to owner of group-->
     </table>
         <hr/>
         <h3>Group Actions</h3>

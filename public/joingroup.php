@@ -1,5 +1,8 @@
 <?php
-
+/*
+// allows user to join group
+// once user selects to join group, displays the obtains the list of instruments that the user has indicated they play AND is available in the group of interest
+*/
     // configuration
     require("../includes/config.php");
 

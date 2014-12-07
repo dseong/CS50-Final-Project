@@ -1,5 +1,8 @@
 <?php
-
+/*
+// allows user to update information on group
+// information updated include group name, group description, group skill, group genre
+*/
     // configuration
     require("../includes/config.php");
     

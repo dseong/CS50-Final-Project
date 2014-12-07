@@ -1,5 +1,8 @@
 <?php
-
+/*
+// necessary to setup create group
+// fills in instruments that owner wants in group
+*/
     // configuration
     require("../includes/config.php");
     

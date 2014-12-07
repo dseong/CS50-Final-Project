@@ -1,5 +1,7 @@
 <?php
-
+/*
+// allows owner of group to delete his/her own group
+*/ 
     // configuration
     require("../includes/config.php");
     
