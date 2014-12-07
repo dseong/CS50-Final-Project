@@ -21,7 +21,7 @@
         // array for instruments slots that are open in the desired group     
         $freeinstruments = [];
             
-            $data = query("SELECT DISTINCT instrument FROM groupinsts WHERE groupid=?", $_GET["id"]);
+            $data = query("SELECT DISTINCT G.instrument FROM groupinsts AS G WHERE groupid=? AND instrument IN (SELECT INS.instrument FROM instruments AS INS WHERE userid=?)", $_GET["id"], $_SESSION["id"]);
             
             foreach($data as $datum)
             {
