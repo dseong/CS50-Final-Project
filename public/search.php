@@ -3,6 +3,7 @@
     // Include configuration
     require("../includes/config.php");
 
+    // Pull out user id and create data array for rendering
     $data = [];
     $userid = $_SESSION["id"];
     
@@ -16,13 +17,13 @@
     
     if(array_key_exists("search", $_GET) && $_GET["search"] === "yes")
     {
+        // User entered a search query on previous page.
+        // Do search actions
         // User submitted the form
-        $data["results"] = [];
-        $data["restore"] = true;
         
         $arguments = [];
         $qstrs = [];
-        $sql = "SELECT G.id, G.name, U.username, G.description, S.description AS skill, (SELECT COUNT(id) FROM groupinsts WHERE groupid=G.id) as slotcnt, (SELECT COUNT(id) FROM groupinsts WHERE groupid=G.id AND userid IS NOT NULL) as fullslot FROM groups AS G LEFT JOIN users AS U ON G.ownerid = U.id INNER JOIN skills AS S ON G.skill = S.id";
+        $sql = "SELECT G.id, G.name, U.username, G.description, G.genre, S.description AS skill, (SELECT COUNT(id) FROM groupinsts WHERE groupid=G.id) as slotcnt, (SELECT COUNT(id) FROM groupinsts WHERE groupid=G.id AND userid IS NOT NULL) as fullslot FROM groups AS G LEFT JOIN users AS U ON G.ownerid = U.id INNER JOIN skills AS S ON G.skill = S.id";
         
         if(array_key_exists("username", $_GET) && !empty($_GET["username"]))
         {

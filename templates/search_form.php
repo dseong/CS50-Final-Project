@@ -59,6 +59,7 @@
                         <tr>
                             <td>Group Name</td>
                             <td>Description</td>
+                            <td>Genre</td>
                             <td>Skill</td>
                             <td>Owner</td>
                             <td>Members</td>
@@ -68,6 +69,7 @@
                         <tr>
                             <td><a <?php echo("href=\"/group.php?id=".htmlspecialchars($result["id"])."\""); ?>><?= htmlspecialchars($result["name"]); ?></a></td>
                             <td><?= htmlspecialchars($result["description"]); ?></td>
+                            <td><?= htmlspecialchars($result["genre"]); ?></td>
                             <td><?= htmlspecialchars($result["skill"]); ?></td>
                             <td><?= htmlspecialchars($result["username"]); ?></td>
                             <td>
