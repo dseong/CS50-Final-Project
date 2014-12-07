@@ -67,6 +67,12 @@
     </table>
         <hr/>
         <h3>Group Actions</h3>
+        <?php if(!$commoninst): ?>
+            <div>
+                <p><span class="text-info">You do not play an instrument needed by this group.</span></p>
+                <p><a class="btn btn-primary" href="/profile.php">Edit your profile</a></p>
+            </div>
+        <?php endif; ?>
         <?php if(!$userisrealmember && $commoninst): ?>
             <a class="btn btn-primary" href="<?= "/joingroup.php?id=".$groupid?>">Join</a>
         <?php elseif($userisrealmember): ?>
@@ -75,7 +81,7 @@
         <?php if($userisowner): ?>
             <a class="btn btn-primary" href="<?= "/request_response.php?id=".$groupid?>">View Applications</a>
         <?php endif; ?>
-                <?php if($userisowner): ?>
+        <?php if($userisowner): ?>
             <a class="btn btn-primary" href="<?= "/edit_group.php?id=".$groupid?>">Edit Group</a>
         <?php endif; ?>
         <?php if($userisowner): ?>
