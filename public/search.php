@@ -86,8 +86,8 @@
                 }
             }
         }
-        // Limit search results to 30 so we don't list too many
-        $sql = $sql . " LIMIT 30";
+        // Limit search results to 40 so we don't list too many
+        $sql = $sql . " LIMIT 40";
 
         // Call query function. We use this method to call with our array of arguments
         $query_res = call_user_func_array("query", array_merge([0 => $sql], $arguments));
