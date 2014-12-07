@@ -23,7 +23,6 @@
                 <?php foreach($instruments as $inst): ?>
                     <option value="<?= htmlspecialchars($inst) ?>"><?= htmlspecialchars($inst) ?></option>
                 <?php endforeach; ?>
-
             </select>
         </div>
         <div class="form-group">

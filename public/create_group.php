@@ -7,35 +7,42 @@
     $instruments = [];
             
     $data = query("SELECT instrument FROM instruments WHERE userid = ?", $_SESSION["id"]);
-            
-    foreach($data as $datum)
+    if(empty($data))
     {
-         $instruments[] = $datum["instrument"];
+        render("no_instruments.php");
     }
     
-    // if user reached via GET, passing in necessary variables
-    if ($_SERVER["REQUEST_METHOD"] == "GET")
-    {
-        // make sure user is logged in
-        if (!empty($_SESSION["id"]))
+    else
+    {   
+        foreach($data as $datum)
         {
-            $genres = [];
-            
-            $data = query("SELECT * FROM genres");
-            $skills = query("SELECT * FROM skills");
-            
-            foreach($data as $datum)
-            {
-                $genres[] = $datum["name"];
-            }
-            render("group_create_form.php", ["title" => "Create Group", "genres" => $genres, "instruments" => $instruments,
-                                             "skills" => $skills]);
+            $instruments[] = $datum["instrument"];
         }
+    
+        // if user reached via GET, passing in necessary variables
+        if ($_SERVER["REQUEST_METHOD"] == "GET")
+        {
+            // make sure user is logged in
+            if (!empty($_SESSION["id"]))
+            {
+                $genres = [];
+            
+                $data = query("SELECT * FROM genres");
+                $skills = query("SELECT * FROM skills");
+            
+                foreach($data as $datum)
+                {
+                    $genres[] = $datum["name"];
+                }
+                render("group_create_form.php", ["title" => "Create Group", "genres" => $genres, "instruments" => $instruments,
+                                             "skills" => $skills]);
+            }
         
-        // else render login form
-        else
-            render("login_form.php", ["title" => "Log In"]);
-    }
+            // else render login form
+            else
+                render("login_form.php", ["title" => "Log In"]);
+        }
+    
     
     // if user reached page via POST
     else if ($_SERVER["REQUEST_METHOD"] == "POST")
@@ -81,6 +88,7 @@
 
             render("group_inst_form.php", ["number" => $_POST["number"], "id" => $id, "instruments" => $instruments, "title" => "Select Instruments"]);
         }
+    }
     } 
 
 ?>
